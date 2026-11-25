@@ -1,0 +1,310 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow | Smart Task Management</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Authentication -->
+    <div id="auth-section" class="auth-wrapper">
+        <div class="auth-card">
+            <div class="brand">
+                <span class="brand-icon">T</span>
+                <span>TaskFlow</span>
+            </div>
+
+            <h1>Welcome Back</h1>
+            <p class="subtitle">Manage your tasks. Achieve your goals.</p>
+
+            <input id="username" type="text" placeholder="Username">
+            <input id="password" type="password" placeholder="Password (min 6 characters)">
+
+            <div class="auth-buttons">
+                <button id="login-btn">Login</button>
+                <button id="register-btn" class="secondary">Create Account</button>
+            </div>
+
+            <p id="auth-msg" class="msg"></p>
+        </div>
+    </div>
+
+
+    <!-- Main Application -->
+    <div id="task-section" class="app-layout hidden">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+
+            <div class="brand">
+                <span class="brand-icon">T</span>
+                <span>TaskFlow</span>
+            </div>
+
+            <p class="sidebar-label">MENU</p>
+
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-link active">
+                    <span>▦</span> Dashboard
+                </a>
+
+                <a href="#tasks" class="nav-link">
+                    <span>☑</span> My Tasks
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="profile">
+                    <div class="avatar">U</div>
+                    <div>
+                        <strong>My Workspace</strong>
+                        <small>Personal Account</small>
+                    </div>
+                </div>
+
+                <button id="logout-btn" class="logout-btn">
+                    Logout
+                </button>
+            </div>
+
+        </aside>
+
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- Top Header -->
+            <header class="topbar">
+                <div>
+                    <h2>Dashboard</h2>
+                    <p>Track your productivity and manage your daily goals.</p>
+                </div>
+
+                <div class="topbar-right">
+                    <span class="status-indicator"></span>
+                    <span>Workspace Active</span>
+                </div>
+            </header>
+
+
+            <!-- Dashboard -->
+            <section id="dashboard" class="dashboard-section">
+
+                <div class="welcome-section">
+                    <div>
+                        <h1>Overview</h1>
+                        <p>Here's what's happening with your tasks.</p>
+                    </div>
+                </div>
+
+
+                <!-- Statistics -->
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span>Total Tasks</span>
+                            <span class="stat-icon purple">▦</span>
+                        </div>
+                        <h2 id="stat-total">0</h2>
+                        <small>All created tasks</small>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span>Pending</span>
+                            <span class="stat-icon orange">◷</span>
+                        </div>
+                        <h2 id="stat-pending">0</h2>
+                        <small>Tasks to complete</small>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span>Completed</span>
+                            <span class="stat-icon green">✓</span>
+                        </div>
+                        <h2 id="stat-done">0</h2>
+                        <small>Successfully completed</small>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-top">
+                            <span>Overdue</span>
+                            <span class="stat-icon red">!</span>
+                        </div>
+                        <h2 id="stat-overdue">0</h2>
+                        <small>Past due date and pending</small>
+                    </div>
+
+                </div>
+
+
+                <!-- Progress -->
+                <div class="progress-card">
+                    <div class="progress-heading">
+                        <div>
+                            <h3>Overall Progress</h3>
+                            <p>Your task completion performance</p>
+                        </div>
+
+                        <strong id="stat-progress">0%</strong>
+                    </div>
+
+                    <div class="progress-track">
+                        <div id="progress-fill" class="progress-fill"></div>
+                    </div>
+
+                    <p class="progress-caption">
+                        Keep going! Every completed task brings you closer to your goals.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- Task Management -->
+            <section id="tasks" class="task-management">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>My Tasks</h2>
+                        <p>Organize and manage your daily activities.</p>
+                    </div>
+
+                    <span id="task-count" class="count">0 Tasks</span>
+                </div>
+
+
+                
+
+
+                <!-- Task Filters -->
+                <div class="task-toolbar">
+
+                    <div class="filters">
+                        <button class="filter-btn active" data-filter="all">
+                            All Tasks
+                        </button>
+
+                        <button class="filter-btn" data-filter="pending">
+                            Pending
+                        </button>
+
+                        <button class="filter-btn" data-filter="done">
+                            Completed
+                        </button>
+                    </div>
+
+                    <input
+                        id="search-input"
+                        type="text"
+                        placeholder="Search tasks..."
+                    >
+
+                     </div>
+                         <div class="export-section">
+    <button id="export-btn" type="button">📥 Export CSV</button>
+
+    <button id="theme-toggle" type="button">
+        🌙 Dark Mode
+    </button>
+</div>
+
+                <!-- Task List -->
+                <div class="task-list-card">
+                    <ul id="task-list"></ul>
+
+                    <p id="empty-msg" class="empty hidden">
+                        No tasks found. Create your first task!
+                    </p>
+                </div>
+
+            </section>
+
+            <footer class="footer">
+                TaskFlow © 2026 | Smart Task Management
+            </footer>
+
+        </main>
+
+    </div>
+
+<!-- Add Task -->
+<div class="task-form-card">
+    <h3>Create New Task</h3>
+
+    <div class="add-form">
+        <input
+            id="task-title"
+            type="text"
+            placeholder="What needs to be done?"
+        >
+
+        <select id="task-category">
+            <option value="work">💼 Work</option>
+            <option value="study">📚 Study</option>
+            <option value="personal">🏠 Personal</option>
+        </select>
+
+        <select id="task-priority">
+            <option value="low">Low Priority</option>
+            <option value="medium" selected>Medium Priority</option>
+            <option value="high">High Priority</option>
+        </select>
+
+        <input id="task-due" type="date">
+
+        <button id="add-btn" type="button">+ Add Task</button>
+    </div>
+
+    <p id="task-msg" class="msg"></p>
+</div>
+
+    
+<!-- EDIT TASK MODAL -->
+<div id="edit-modal" class="modal hidden">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Edit Task</h2>
+            <button type="button" id="close-modal" class="modal-close">&times;</button>
+        </div>
+
+        <label for="edit-title">Task Title</label>
+        <input type="text" id="edit-title" placeholder="Enter task title">
+       <label for="edit-category">Category</label>
+<select id="edit-category">
+    <option value="work">💼 Work</option>
+    <option value="study">📚 Study</option>
+    <option value="personal">🏠 Personal</option>
+</select>
+        <label for="edit-priority">Priority</label>
+        <select id="edit-priority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+
+        <label for="edit-due">Due Date</label>
+        <input type="date" id="edit-due">
+
+        <p id="edit-msg"></p>
+
+        <div class="modal-actions">
+            <button type="button" id="cancel-edit" class="secondary">Cancel</button>
+            <button type="button" id="save-edit" class="primary">Update Task</button>
+        </div>
+    </div>
+</div>
+
+    <script src="/static/script.js"></script>
+
+</body>
+</html>
