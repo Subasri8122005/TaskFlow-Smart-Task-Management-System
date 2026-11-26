@@ -121,6 +121,25 @@ The test cases cover user registration, duplicate registration, login, authentic
 B.Tech – Information Technology
 
 GitHub: https://github.com/Subasri8122005
+## Application Screenshots
+
+### 1. Login Page
+![Login Page](screenshots/01.Login.png)
+
+### 2. Dashboard
+![Dashboard](screenshots/02.Dashboard.png)
+
+### 3. Create Task
+![Create Task](screenshots/03.Createtask.png)
+
+### 4. Completed Tasks
+![Completed Tasks](screenshots/04-completed-tasks.png)
+
+### 5. Light Mode
+![Light Mode](screenshots/05.Lightmode.png)
+
+### 6. Automated Testing
+![Pytest Results](screenshots/06-pytest-results.png)
 
 ---
 
