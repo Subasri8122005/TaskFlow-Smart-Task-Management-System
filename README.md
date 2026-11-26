@@ -135,8 +135,8 @@ GitHub: https://github.com/Subasri8122005
 ### 4. Completed Tasks
 ![Completed Tasks](screenshots/04-completed-tasks.png)
 
-### 5. Light Mode
-![Light Mode](screenshots/05.Lightmode.png)
+### 5. Dark Mode
+![Dark Mode](screenshots/05.Darkmode.png)
 
 ### 6. Automated Testing
 ![Pytest Results](screenshots/06-pytest-results.png)

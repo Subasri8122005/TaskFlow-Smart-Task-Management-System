@@ -413,40 +413,5 @@ def export_tasks():
 # RUN APPLICATION
 if __name__ == "__main__":
     # DATABASE INITIALIZATION AND MIGRATION
-def ensure_category_column():
-    db = get_db()
-
-    db.execute("""
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT UNIQUE NOT NULL,
-            password_hash TEXT NOT NULL
-        )
-    """)
-
-    db.execute("""
-        CREATE TABLE IF NOT EXISTS tasks (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            user_id INTEGER NOT NULL,
-            title TEXT NOT NULL,
-            status TEXT NOT NULL DEFAULT 'pending',
-            priority TEXT NOT NULL DEFAULT 'medium',
-            due_date TEXT,
-            category TEXT NOT NULL DEFAULT 'work',
-            FOREIGN KEY (user_id) REFERENCES users(id)
-        )
-    """)
-
-    columns = [
-        row["name"]
-        for row in db.execute("PRAGMA table_info(tasks)").fetchall()
-    ]
-
-    if "category" not in columns:
-        db.execute("""
-            ALTER TABLE tasks
-            ADD COLUMN category TEXT NOT NULL DEFAULT 'work'
-        """)
-
-    db.commit()
-    db.close()
+    ensure_category_column()
+    app.run(debug=True, use_reloader=False)
